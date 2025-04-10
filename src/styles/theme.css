@@ -1,0 +1,114 @@
+root {
+  --primary: #1B4332;         /* Deep forest green */
+  --accent: #DAA520;          /* Muted gold */
+  --background: #F9F9F9;      /* Off-white */
+  --text-dark: #1C1C1C;
+  --text-light: #F1F1F1;
+  --highlight: #264653;       /* Dark teal */
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--text-dark);
+  font-family: var(--font-body);
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-heading);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+button {
+  border: 2px solid var(--primary);
+  background: transparent;
+  color: var(--primary);
+  padding: 10px 20px;
+  font-weight: bold;
+  transition: background 0.3s ease;
+  cursor: pointer;
+}
+
+button:hover {
+  background: var(--primary);
+  color: var(--text-light);
+}
+
+/* landing page css */
+
+/* Landing page container */
+/* Full background */
+.landing {
+  height: 100vh;
+  width: 100vw;
+  background-image: url('/src/assets/images/alexHero.jpg'); /* make sure this path is right */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  font-family: var(--font-heading);
+}
+
+/* Animated, skewed white glassy block */
+.diamond-bg {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
+  opacity: 0;
+  transform: rotate(0deg); /* starts as a square */
+  border-radius: 10px;
+  z-index: 1;
+  transition: box-shadow 0.3s ease;
+}
+
+.landing:hover .diamond-bg {
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.2);
+  transform: rotate(45deg) scale(1.05); /* hover effect */
+}
+
+/* Text + Button */
+.landing-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: var(--primary);
+}
+
+.landing-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  letter-spacing: 0.05em;
+}
+
+.landing-content button {
+  font-size: 1rem;
+  padding: 1rem 2rem;
+  background: none;
+  border: 2px solid var(--primary);
+  color: var(--primary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.landing-content button:hover {
+  background-color: var(--primary);
+  color: var(--text-light);
+}
+
+.landing::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.25); /* adjust tint strength */
+  z-index: -1;
+}
