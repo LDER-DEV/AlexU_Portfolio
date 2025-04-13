@@ -7,8 +7,12 @@ export default function Navbar(){
   const [menuOpen, setMenuOpen] = useState(false)
 
   const NavItems = [
-    {name: 'Home', path: '/'},
-    {name: 'Photography', path: '/photography'}  
+    {name: 'Home', path: '/Home'},
+    {name: 'Modeling', path: '/modeling'},
+    {name: 'Poetry', path: '/poetry'},
+    {name: 'Ceramics', path: '/ceramics'},
+    {name: 'Photography', path: '/photography'},
+    {name: 'Short Films', path: '/shortFilms'} ,
   ]
 
   const toggleMenu = () => setMenuOpen (!menuOpen)

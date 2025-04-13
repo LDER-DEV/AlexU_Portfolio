@@ -56,3 +56,12 @@
   object-fit: cover;
   box-shadow: 0 0 0 2px var(--primary); /* sharp border frame */
 }
+.faIcon1{
+  width: 1.5rem;
+  height:auto;
+}
+.faIcon2{
+  margin-left:1rem;
+  width: 1.5rem;
+  height:auto;
+}
