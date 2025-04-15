@@ -456,7 +456,7 @@ button:hover {
 .poetry-page {
   min-height: 100vh;
   padding: 6rem 2rem;
-  background-image: url('/src/assets/images/paperBG.jpg');
+  background-image: url('/src/assets/images/paperboard-texture.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -499,6 +499,65 @@ button:hover {
   font-size: 1.15rem;
   line-height: 1.8;
   margin-bottom: 1.5rem;
+}
+
+/* MODELING / FEATURED*/
+
+.modeling-page {
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.modeling-grid {
+  display: grid;
+  gap: .5rem;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  justify-content: center;
+  max-width:1200px;
+  margin: 0 auto;
+
+  align-items: center;
+}
+
+.modeling-thumb {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border-radius: 8px;
+}
+
+.modeling-thumb:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Reuse existing modal styles */
+.photo-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.photo-modal {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  max-width: 90%;
+  max-height: 90%;
+  text-align: center;
+}
+
+.photo-modal img {
+  max-width: 100%;
+  max-height: 70vh;
+  border-radius: 6px;
+  margin-bottom: 1rem;
 }
 
 /* =======================
@@ -548,6 +607,11 @@ button:hover {
     gap: 2rem;
     flex-wrap: wrap;
     flex-direction: column-reverse;
+}
+.hero-image{
+  border-left: none;
+  border-right: 4px solid  var(--accent);
+  border-bottom: 4px solid var(--accent);
 }
 
 }
