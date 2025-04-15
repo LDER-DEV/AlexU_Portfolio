@@ -1,6 +1,6 @@
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import Home from './pages/Home'
-import Photography from './Pages/Photography'
+import Photography from './pages/Photography'
 import ShortFilms from './pages/ShortFilms'
 import Poetry from './pages/Poetry'
 import Ceramics from './pages/Ceramics'
