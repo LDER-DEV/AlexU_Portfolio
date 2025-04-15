@@ -1,6 +1,6 @@
 import {Link, useLocation} from 'react-router-dom'
 import{useState} from 'react'
-import './Navbar.css'
+import '../styles/theme.css'
 
 export default function Navbar(){
   const { pathname } = useLocation()

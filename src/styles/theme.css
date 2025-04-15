@@ -1,10 +1,10 @@
-root {
-  --primary: #1B4332;         /* Deep forest green */
-  --accent: #DAA520;          /* Muted gold */
-  --background: #F9F9F9;      /* Off-white */
+:root {
+  --primary: #1B4332;
+  --accent: #DAA520;
+  --background: #F9F9F9;
   --text-dark: #1C1C1C;
   --text-light: #F1F1F1;
-  --highlight: #264653;       /* Dark teal */
+  --highlight: #264653;
   --font-heading: 'Playfair Display', serif;
   --font-body: 'Inter', sans-serif;
 }
@@ -37,15 +37,101 @@ button:hover {
   background: var(--primary);
   color: var(--text-light);
 }
+/* =======================
+   Navbar
+   ======================= */
 
-/* landing page css */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 3rem;
+  border-bottom: 1px solid var(--primary);
+  background-color: var(--background);
+  font-family: var(--font-heading);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
 
-/* Landing page container */
-/* Full background */
+.navbar-logo a {
+  font-size: 1.5rem;
+  color: var(--primary);
+  text-decoration: none;
+  letter-spacing: 0.05em;
+}
+
+/* Regular desktop nav */
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-links li a {
+  text-decoration: none;
+  color: var(--text-dark);
+  font-weight: 500;
+  position: relative;
+  padding-bottom: 4px;
+}
+
+.navbar-links li.active a,
+.navbar-links li a:hover {
+  color: var(--primary);
+}
+
+.navbar-links li a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0%;
+  background-color: var(--primary);
+  transition: width 0.3s ease-in-out;
+}
+
+.navbar-links li a:hover::after,
+.navbar-links li.active a::after {
+  width: 100%;
+}
+
+/* Hamburger icon */
+.navbar-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.navbar-toggle span {
+  width: 25px;
+  height: 2px;
+  background-color: var(--primary);
+  transition: all 0.3s ease;
+}
+
+.navbar-toggle.open span:nth-child(1) {
+  transform: rotate(45deg) translateY(8px);
+}
+.navbar-toggle.open span:nth-child(2) {
+  opacity: 0;
+}
+.navbar-toggle.open span:nth-child(3) {
+  transform: rotate(-45deg) translateY(-8px);
+}
+
+/* =======================
+   Landing Page
+   ======================= */
+
 .landing {
   height: 100vh;
   width: 100vw;
-  background-image: url('/src/assets/images/alexHero.jpg'); /* make sure this path is right */
+  background-image: url('/src/assets/images/alexHero.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -57,7 +143,6 @@ button:hover {
   font-family: var(--font-heading);
 }
 
-/* Animated, skewed white glassy block */
 .diamond-bg {
   position: absolute;
   width: 400px;
@@ -65,7 +150,7 @@ button:hover {
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(8px);
   opacity: 0;
-  transform: rotate(0deg); /* starts as a square */
+  transform: rotate(0deg);
   border-radius: 10px;
   z-index: 1;
   transition: box-shadow 0.3s ease;
@@ -73,10 +158,9 @@ button:hover {
 
 .landing:hover .diamond-bg {
   box-shadow: 0 0 50px rgba(0, 0, 0, 0.2);
-  transform: rotate(45deg) scale(1.05); /* hover effect */
+  transform: rotate(45deg) scale(1.05);
 }
 
-/* Text + Button */
 .landing-content {
   position: relative;
   z-index: 2;
@@ -93,99 +177,82 @@ button:hover {
 .landing-content button {
   font-size: 1rem;
   padding: 1rem 2rem;
-  background: none;
-  border: 2px solid var(--primary);
-  color: var(--primary);
-  cursor: pointer;
   transition: all 0.3s ease;
-}
-
-.landing-content button:hover {
-  background-color: var(--primary);
-  color: var(--text-light);
 }
 
 .landing::before {
   content: '';
   position: absolute;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.25); /* adjust tint strength */
+  background-color: rgba(0, 0, 0, 0.25);
   z-index: -1;
 }
+
 /* =======================
    Contact Page
    ======================= */
 
-   .contact-page {
-    min-height: 100vh;
-    padding: 6rem 2rem;
-    background-color: var(--background);
-    color: var(--primary);
-    font-family: var(--font-body);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .contact-page h2 {
-    font-family: var(--font-heading);
-    font-size: 2rem;
-    margin-bottom: 2rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-  
-  .contact-form {
-    max-width: 600px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-  
-  .contact-form label {
-    display: flex;
-    flex-direction: column;
-    font-weight: 600;
-    font-size: 0.95rem;
-    color: var(--text-dark);
-  }
-  
-  .contact-form input,
-  .contact-form textarea {
-    margin-top: 0.5rem;
-    padding: 0.75rem 1rem;
-    border: 2px solid var(--primary);
-    background-color: transparent;
-    color: var(--text-dark);
-    font-size: 1rem;
-    border-radius: 6px;
-    transition: border-color 0.3s ease;
-  }
-  
-  .contact-form input:focus,
-  .contact-form textarea:focus {
-    outline: none;
-    border-color: var(--accent);
-  }
-  
-  .contact-form button {
-    align-self: flex-start;
-    padding: 0.75rem 1.5rem;
-    font-weight: bold;
-    background: none;
-    color: var(--primary);
-    border: 2px solid var(--primary);
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-  
-  .contact-form button:hover {
-    background-color: var(--primary);
-    color: var(--text-light);
-  }
+.contact-page {
+  min-height: 100vh;
+  padding: 6rem 2rem;
+  background-color: var(--background);
+  color: var(--primary);
+  font-family: var(--font-body);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contact-page h2 {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.contact-form {
+  max-width: 600px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.contact-form label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--text-dark);
+}
+
+.contact-form input,
+.contact-form textarea {
+  margin-top: 0.5rem;
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--primary);
+  background-color: transparent;
+  color: var(--text-dark);
+  font-size: 1rem;
+  border-radius: 6px;
+  transition: border-color 0.3s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.contact-form button {
+  align-self: flex-start;
+  padding: 0.75rem 1.5rem;
+  font-weight: bold;
+}
+
 /* =======================
-   Short Films Carousel
+   Short Films — Centered Carousel
    ======================= */
 
    .shortfilms-page {
@@ -204,7 +271,7 @@ button:hover {
     letter-spacing: 0.05em;
   }
   
-  /* Carousel control buttons */
+  /* Navigation arrows */
   .carousel-controls {
     display: flex;
     justify-content: center;
@@ -227,40 +294,28 @@ button:hover {
     color: var(--text-light);
   }
   
-  /* Video carousel layout */
-  .video-carousel {
+  /* Main video display container */
+  .video-centered-container {
     display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-    gap: 2rem;
-    padding: 1rem;
     justify-content: center;
+    align-items: center;
+    min-height: 400px;
+    position: relative;
     width: 100%;
-    max-width: 100vw;
-    -ms-overflow-style: none;  /* hide scrollbar in IE */
-    scrollbar-width: none;     /* hide scrollbar in Firefox */
   }
   
-  .video-carousel::-webkit-scrollbar {
-    display: none; /* hide scrollbar in Chrome/Safari */
-  }
-  
-  /* Individual video card */
-  .video-card {
-    flex: 0 0 100%;
+  .video-centered-container .video-card {
+    width: 100%;
     max-width: 600px;
-    margin: 0 auto;
-    scroll-snap-align: center;
+    padding: 1rem;
     background-color: white;
     border: 2px solid var(--primary);
     border-radius: 8px;
-    padding: 1rem;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-  
-    opacity: 0; /* animated on mount */
-    transform: translateY(30px); /* initial for fade-in */
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    opacity: 0; /* Start hidden for anime fade-in */
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+    text-align: center;
   }
   
   .video-card iframe {
@@ -271,11 +326,36 @@ button:hover {
   
   .video-card p {
     margin-top: 0.75rem;
-    font-weight: 500;
     font-size: 1rem;
+    font-weight: 500;
     color: var(--text-dark);
   }
+  
   /* =======================
+     Responsive Adjustments
+     ======================= */
+  
+  @media (max-width: 768px) {
+    .shortfilms-page h2 {
+      font-size: 1.5rem;
+    }
+  
+    .carousel-controls button {
+      font-size: 1rem;
+      padding: 0.4rem 0.75rem;
+    }
+  
+    .video-card iframe {
+      height: 220px;
+    }
+  
+    .video-card p {
+      font-size: 0.95rem;
+    }
+  }
+  
+
+/* =======================
    Poetry Page
    ======================= */
 
@@ -286,32 +366,30 @@ button:hover {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-
   display: flex;
   flex-direction: column;
   align-items: center;
   color: var(--text-dark);
-  font-family: var(--font-heading); /* or something more literary like Georgia or "Playfair Display" */
+  font-family: var(--font-heading);
   text-align: center;
+  position: relative;
 }
 
-/* Optional overlay if the texture is too harsh */
 .poetry-page::before {
   content: '';
   position: absolute;
   inset: 0;
-  background-color: rgba(255, 255, 255, 0.6); /* soften the texture */
+  background-color: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(1px);
   z-index: 0;
 }
 
-/* Content container on top */
 .poetry-content {
   position: relative;
   z-index: 1;
   max-width: 800px;
   padding: 2rem;
-  background-color: rgba(255, 255, 255, 0.85); /* gives that clean paper page look */
+  background-color: rgba(255, 255, 255, 0.85);
   border-radius: 8px;
   box-shadow: 0 0 20px rgba(0,0,0,0.1);
 }
@@ -328,3 +406,91 @@ button:hover {
   line-height: 1.8;
   margin-bottom: 1.5rem;
 }
+
+/* =======================
+   Responsive Design
+   ======================= */
+
+@media (max-width: 768px) {
+  .landing-content h1 {
+    font-size: 2rem;
+  }
+
+  .diamond-bg {
+    width: 280px;
+    height: 280px;
+  }
+
+  .carousel-controls button {
+    font-size: 1rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  .video-card iframe {
+    height: 220px;
+  }
+
+  .poetry-content {
+    padding: 1rem;
+  }
+
+  .poetry-content h2 {
+    font-size: 1.5rem;
+  }
+
+  .poetry-content p {
+    font-size: 1rem;
+  }
+
+  .hero {
+    display: flex
+;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4rem;
+    background-color: var(--background);
+    border-bottom: 2px solid var(--primary);
+    font-family: var(--font-body);
+    gap: 2rem;
+    flex-wrap: wrap;
+    flex-direction: column-reverse;
+}
+
+}
+/* NAVBAR RESPONSIVENESS */
+@media (max-width: 768px) {
+  .navbar-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: var(--background);
+    display: none;
+    flex-direction: row;
+    overflow-x: auto;
+    white-space: nowrap;
+    gap: 1rem;
+    padding: 1rem 2rem;
+    scrollbar-width: none;
+    justify-content: flex-start;
+    scroll-snap-type: x mandatory;
+  }
+
+  .navbar-links::-webkit-scrollbar {
+    display: none;
+  }
+
+  .navbar-links.active {
+    display: flex;
+  }
+
+  .navbar-links li {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+  }
+
+  .navbar-toggle {
+    display: flex;
+  }
+}
+
