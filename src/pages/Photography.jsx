@@ -1,86 +1,68 @@
-import { useEffect, useState, useRef } from 'react'
-import Navbar from '../components/Navbar'
+import { useState } from 'react'
 import anime from 'animejs/lib/anime.es.js'
 import polaroids from '../assets/photoData'
+import Navbar from '../components/Navbar'
 import '../styles/theme.css'
 
 export default function Photography() {
   const [selectedPhoto, setSelectedPhoto] = useState(null)
-  const modalRef = useRef(null)
 
-  useEffect(() => {
-    const cards = document.querySelectorAll('.polaroid')
+  const handleMouseDown = (e) => {
+    const card = e.currentTarget
+    let isDragging = true
+    let startX = e.clientX
+    let startY = e.clientY
 
-    cards.forEach((card, index) => {
-      let isDragging = false
-      let offsetX = 0, offsetY = 0, startX = 0, startY = 0
+    const matrix = new DOMMatrixReadOnly(getComputedStyle(card).transform)
+    const offsetX = matrix.m41
+    const offsetY = matrix.m42
 
-      const onMouseDown = (e) => {
-        isDragging = true
-        startX = e.clientX
-        startY = e.clientY
+    card.style.cursor = 'grabbing'
+    card.style.zIndex = 1000
 
-        const matrix = new WebKitCSSMatrix(getComputedStyle(card).transform)
-        offsetX = matrix.m41
-        offsetY = matrix.m42
-
-        card.style.cursor = 'grabbing'
-        card.style.zIndex = '1000'
-      }
-
-      const onMouseMove = (e) => {
-        if (!isDragging) return
-        const dx = e.clientX - startX
-        const dy = e.clientY - startY
-        card.style.transform = `translate(${offsetX + dx}px, ${offsetY + dy}px) rotate(${dx / 15}deg)`
-      }
-
-      const onMouseUp = () => {
-        if (!isDragging) return
-        isDragging = false
-        card.style.cursor = 'grab'
-        card.style.zIndex = 'auto'
-
-        anime({
-          targets: card,
-          translateX: 0,
-          translateY: 0,
-          rotate: anime.random(-5, 5),
-          duration: 600,
-          easing: 'easeOutElastic(1, .5)'
-        })
-      }
-
-      const onDoubleClick = () => {
-        setSelectedPhoto(polaroids[index])
-      }
-
-      card.addEventListener('mousedown', onMouseDown)
-      window.addEventListener('mousemove', onMouseMove)
-      window.addEventListener('mouseup', onMouseUp)
-      card.addEventListener('dblclick', onDoubleClick)
-    })
-  }, [])
-
-  useEffect(() => {
-    if (selectedPhoto && modalRef.current) {
-      anime({
-        targets: modalRef.current,
-        opacity: [0, 1],
-        scale: [0.95, 1],
-        duration: 400,
-        easing: 'easeOutQuad'
-      })
+    const handleMouseMove = (moveEvent) => {
+      if (!isDragging) return
+      const dx = moveEvent.clientX - startX
+      const dy = moveEvent.clientY - startY
+      card.style.transform = `translate(${offsetX + dx}px, ${offsetY + dy}px) rotate(${dx / 15}deg)`
     }
-  }, [selectedPhoto])
+
+    const handleMouseUp = () => {
+      if (!isDragging) return
+      isDragging = false
+      card.style.cursor = 'grab'
+      card.style.zIndex = 'auto'
+
+      anime({
+        targets: card,
+        translateX: 0,
+        translateY: 0,
+        rotate: anime.random(-5, 5),
+        duration: 600,
+        easing: 'easeOutElastic(1, .5)'
+      })
+
+      window.removeEventListener('mousemove', handleMouseMove)
+      window.removeEventListener('mouseup', handleMouseUp)
+    }
+
+    window.addEventListener('mousemove', handleMouseMove)
+    window.addEventListener('mouseup', handleMouseUp)
+  }
 
   return (
     <section className="photography-page">
       <Navbar />
-      <h1>Photography</h1>
+        <h1>Photography</h1>
+
       <div className="photo-grid">
         {polaroids.map((photo, index) => (
-          <div className="polaroid" key={index}>
+          <div
+            className="polaroid"
+            key={index}
+            onMouseDown={handleMouseDown}
+            onDoubleClick={() => setSelectedPhoto(photo)}
+          >
             <img src={photo.src} alt={photo.title} />
             <p>{photo.title}</p>
           </div>
@@ -89,7 +71,7 @@ export default function Photography() {
 
       {selectedPhoto && (
         <div className="photo-modal-overlay" onClick={() => setSelectedPhoto(null)}>
-          <div className="photo-modal" ref={modalRef} onClick={(e) => e.stopPropagation()}>
+          <div className="photo-modal" onClick={(e) => e.stopPropagation()}>
             <img src={selectedPhoto.src} alt={selectedPhoto.title} />
             <p>{selectedPhoto.title}</p>
             <button onClick={() => setSelectedPhoto(null)}>Close</button>
