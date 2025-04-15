@@ -189,6 +189,100 @@ button:hover {
 }
 
 /* =======================
+   Photography Page
+   ======================= */
+   .photography-page > h1{
+    display: flex;
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    color: var(--primary);
+    justify-content: center;
+   }
+   .photo-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    padding: 2rem;
+  }
+  
+  .polaroid {
+    width: 220px;
+    padding: 1rem;
+    background: white;
+    border: 2px solid var(--primary);
+    border-radius: 8px;
+    box-shadow: 6px 10px 20px rgba(0, 0, 0, 0.2);
+    cursor: grab;
+    user-select: none;
+    touch-action: none;
+    position: relative;
+    transition: box-shadow 0.2s ease;
+  }
+  
+  .polaroid img {
+    width: 100%;
+    pointer-events: none;
+    user-select: none;
+  }
+  
+  .polaroid p {
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    text-align: center;
+  }
+  .photo-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+  }
+  
+  .photo-modal {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 40px rgba(0,0,0,0.3);
+    text-align: center;
+    max-width: 90%;
+    max-height: 90%;
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  
+  .photo-modal img {
+    max-width: 100%;
+    max-height: 60vh;
+    margin-bottom: 1rem;
+  }
+  
+  .photo-modal p {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .photo-modal button {
+    background: none;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+    padding: 0.5rem 1.25rem;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+  }
+  
+  .photo-modal button:hover {
+    background-color: var(--primary);
+    color: white;
+  }
+  
+  
+  
+/* =======================
    Contact Page
    ======================= */
 
