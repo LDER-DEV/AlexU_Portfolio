@@ -13,6 +13,7 @@ export default function Navbar(){
     {name: 'Ceramics', path: '/ceramics'},
     {name: 'Photography', path: '/photography'},
     {name: 'Short Films', path: '/shortFilms'} ,
+    {name: 'Contact Me', path: '/Contact'}
   ]
 
   const toggleMenu = () => setMenuOpen (!menuOpen)

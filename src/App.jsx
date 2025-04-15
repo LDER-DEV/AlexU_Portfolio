@@ -5,6 +5,7 @@ import ShortFilms from './pages/ShortFilms'
 import Poetry from './pages/Poetry'
 import Ceramics from './pages/Ceramics'
 import Modeling from './pages/Modeling'
+import Contact from './pages/Contact'
 import Landing from './pages/landing'
 
 
@@ -20,6 +21,7 @@ function App() {
         <Route path ='/Poetry' element={<Poetry/>} />
         <Route path = '/Modeling' element={<Modeling/>} />
         <Route path = '/Ceramics' element={<Ceramics/>} />
+        <Route path = '/Contact' element={<Contact/>} />
       </Routes>
     </Router>
   )
